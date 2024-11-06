@@ -1,26 +1,52 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <img :src="pokemonLogo" alt="Logo de Pokémon" class="main-image" />
+    <h1 class="title">¡Adivina el Pokémon!</h1>
+    <PokeLista :discoveredCount="discoveredCount" @incrementCount="incrementCount" />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import PokeLista from './components/PokeLista.vue';
+// Importa la imagen del logo de Pokémon
+import pokemonLogo from './assets/pokemon-23.svg';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  components: { PokeLista },
+  data() {
+    return {
+      discoveredCount: 0,
+      // Asigna la imagen importada a una propiedad de datos
+      pokemonLogo
+    };
+  },
+  methods: {
+    incrementCount() {
+      this.discoveredCount++;
+    },
+  },
+};
 </script>
 
-<style>
+<style scoped>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  background-color: #f3f4f6;
+}
+
+.title {
+  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.main-image {
+  width: 250px;
+  margin-bottom: 1.5rem;
 }
 </style>
